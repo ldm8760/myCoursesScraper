@@ -51,8 +51,11 @@ public class App
 
     public static void Scrape(WebDriver driver) 
     {
-        driver.navigate().to("https://mycourses.rit.edu/d2l/le/worktodo/view");
-        
+        // driver.navigate().to("https://mycourses.rit.edu/d2l/le/worktodo/view");
+        for (WebElement link : driver.findElements(By.className("d2l-list-item-content"))) 
+        {
+            System.out.println(link.getText());
+        }
     }
 
     public static void main( String[] args ) throws InterruptedException  
