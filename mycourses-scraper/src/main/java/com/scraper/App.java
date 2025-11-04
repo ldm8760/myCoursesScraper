@@ -37,19 +37,24 @@ public class App
         // 2FA
         System.out.println("Please complete 2FA manually");
 
+        WebDriverWait wait2fa = new WebDriverWait(driver, Duration.ofSeconds(60));
+
         // Potential trust this device prompt
-        WebElement trustPrompt = driver.findElement(By.id("trust-browser-button"));
+        wait2fa.until(ExpectedConditions.visibilityOfElementLocated(By.id("dont-trust-browser-button")));
+        WebElement trustPrompt = driver.findElement(By.id("dont-trust-browser-button"));
         if (trustPrompt.isDisplayed()) 
         {
             trustPrompt.click();
         }
-
-        WebDriverWait wait2fa = new WebDriverWait(driver, Duration.ofSeconds(60));
-        wait2fa.until(webDriver -> 
-            webDriver.getCurrentUrl().contains("https://mycourses.rit.edu/d2l/home")
-        );
         System.out.println("2FA completed and redirected back. Continuing automation...");
     }
+
+    public static void Scrape(WebDriver driver) 
+    {
+        driver.navigate().to("https://mycourses.rit.edu/d2l/le/worktodo/view");
+        
+    }
+
     public static void main( String[] args ) throws InterruptedException  
     {
         
