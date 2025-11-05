@@ -13,7 +13,7 @@ public class App
 {
     public static void Login(WebDriver driver) throws InterruptedException 
     {
-        driver.get("https://mycourses.rit.edu/d2l/login");
+        driver.get("https://mycourses.rit.edu/d2l/le/worktodo/view");
         String firstLoginXpath = "/html/body/div/div[2]/div/div[1]/d2l-html-block/div/div/table/tbody/tr[1]/td[1]/a";
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 
@@ -51,7 +51,6 @@ public class App
 
     public static void Scrape(WebDriver driver) 
     {
-        // driver.navigate().to("https://mycourses.rit.edu/d2l/le/worktodo/view");
         for (WebElement link : driver.findElements(By.className("d2l-list-item-content"))) 
         {
             System.out.println(link.getText());
@@ -61,9 +60,15 @@ public class App
     public static void main( String[] args ) throws InterruptedException  
     {
         
-        WebDriver driver = new ChromeDriver();
-        Login(driver);
+        WebDriver driver = new ChromeDriver(); 
+        Login(driver); 
+
         // Login complete, now on home page
+        // WebDriverWait waitForPage = new WebDriverWait(driver, Duration.ofSeconds(10));
+        // waitForPage.until(ExpectedConditions.visibilityOfElementLocated(By.id("d2l_1_14_147")));
+
+        // driver.navigate().to("https://mycourses.rit.edu/d2l/le/worktodo/view");
+        // Scrape(driver);
 
         Thread.sleep(10000);
         driver.quit();
