@@ -51,6 +51,7 @@ public class App
 
     public static void Scrape(WebDriver driver) 
     {
+        System.out.println("Scraping course list:");
         for (WebElement link : driver.findElements(By.className("d2l-list-item-content"))) 
         {
             System.out.println(link.getText());
@@ -62,15 +63,11 @@ public class App
         
         WebDriver driver = new ChromeDriver(); 
         Login(driver); 
+        Thread.sleep(5000);
 
-        // Login complete, now on home page
-        // WebDriverWait waitForPage = new WebDriverWait(driver, Duration.ofSeconds(10));
-        // waitForPage.until(ExpectedConditions.visibilityOfElementLocated(By.id("d2l_1_14_147")));
-
-        // driver.navigate().to("https://mycourses.rit.edu/d2l/le/worktodo/view");
-        // Scrape(driver);
-
-        Thread.sleep(10000);
+        System.out.println("Logged in successfully. Proceeding to scrape courses...");
+        Scrape(driver);
+        Thread.sleep(5000);
         driver.quit();
     }
 }
